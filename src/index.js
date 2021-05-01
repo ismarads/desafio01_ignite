@@ -73,31 +73,31 @@ app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
   const { title, deadline } = request.body;
   const { id } = request.params;
 
-  const checkTodo = user.todos.find(todo => todo.id === id);
+  const verifyTodo = user.todos.find(todo => todo.id === id);
 
-  if (!checkTodo) {
+  if (!verifyTodo) {
     return response.status(404).json({ error: 'Todo not found' });
   }
 
-  checkTodo.title = title;
-  checkTodo.deadline = new Date(deadline);
+  verifyTodo.title = title;
+  verifyTodo.deadline = new Date(deadline);
 
-  return response.json(checkTodo);
+  return response.json(verifyTodo);
 });
 
 app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
   const { user } = request;
   const { id } = request.params;
 
-  const checkTodo = user.todos.find(todo => todo.id === id);
+  const verifyTodo = user.todos.find(todo => todo.id === id);
 
-  if (!checkTodo) {
+  if (!verifyTodo) {
     return response.status(404).json({ error: 'Todo not found' });
   }
 
-  checkTodo.done = true;
+  verifyTodo.done = true;
 
-  return response.json(checkTodo);
+  return response.json(verifyTodo);
 });
 
 app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
